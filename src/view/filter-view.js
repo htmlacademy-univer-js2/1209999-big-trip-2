@@ -27,7 +27,6 @@ export default class FilterView {
     if (!this.element) {
       this.element = createElement(this.getTemplate());
     }
-
     return this.element;
   }
 
@@ -35,4 +34,3 @@ export default class FilterView {
     this.element = null;
   }
 }
-
