@@ -1,14 +1,13 @@
-export default class PointsModel {
-  #points = null;
-  #destinations = null;
-  #offers = null;
+import {generatePoints} from '../mock/point';
+import {destinations} from '../mock/destinations';
+import {offers} from '../mock/offer';
 
+export default class PointModel {
+  #points;
+  #destinations;
+  #offers
   constructor() {
-    this.#points = [];
-  }
-
-  init(points, destinations, offers) {
-    this.#points = points;
+    this.#points = Array.from({length: 3}, generatePoints);
     this.#destinations = destinations;
     this.#offers = offers;
   }
