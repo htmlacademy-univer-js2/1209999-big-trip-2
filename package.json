@@ -4,13 +4,10 @@
   "private": true,
   "description": "Проект «Большое путешествие» от HTML Academy",
   "scripts": {
-    "lint": "eslint src/",
+    "eslint": "eslint src/",
+    "test": "npm run eslint",
     "build": "webpack --mode production",
     "start": "webpack serve --mode development --open"
-  },
-  "devDependencies": {
-    "eslint": "7.32.0",
-    "eslint-config-htmlacademy": "5.0.0"
   },
   "browserslist": [
     "last 2 versions",
@@ -19,6 +16,17 @@
     "not op_mini all",
     "not < 0.25%"
   ],
+  "devDependencies": {
+    "@babel/core": "7.16.0",
+    "@babel/preset-env": "7.20.2",
+    "babel-loader": "8.2.3",
+    "copy-webpack-plugin": "11.0.0",
+    "eslint": "7.32.0",
+    "eslint-config-htmlacademy": "5.0.0",
+    "webpack": "^5.83.1",
+    "webpack-cli": "4.10.0",
+    "webpack-dev-server": "^4.15.0"
+  },
   "engines": {
     "node": "16"
   },
@@ -28,6 +36,7 @@
     "copy-webpack-plugin": "^11.0.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^4.11.1",
+    "dayjs": "1.10.7"
   }
 }
