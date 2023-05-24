@@ -5,7 +5,7 @@ parserOptions:
 parser: "@babel/eslint-parser"
 
 env:
-  es2017: true
+  es2022: true
   browser: true
 
 extends: 'htmlacademy/vanilla'
