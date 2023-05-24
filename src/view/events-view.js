@@ -6,21 +6,19 @@ const createEventsTemplate = () => (
 );
 
 export default class EventsView {
-  #element = null;
-
-  get template () {
+  getTemplate () {
     return createEventsTemplate;
   }
 
-  get element() {
-    if (!this.#element){
-      this.#element = createElement(this.template);
+  getElement() {
+    if (!this.element){
+      this.element = createElement(this.getTemplate());
     }
 
-    return this.#element;
+    return this.element;
   }
 
   removeElement() {
-    this.#element = null;
+    this.element = null;
   }
 }
