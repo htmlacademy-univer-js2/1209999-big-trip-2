@@ -132,30 +132,25 @@ const createEditeFormTemplate = (point, destinations, offers) => {
 };
 
 export default class EditeFormView {
-  #element = null;
-  #point = null;
-  #destination = null;
-  #offers = null;
-
   constructor(point, destination, offers) {
-    this.#point = point;
-    this.#destination = destination;
-    this.#offers = offers;
+    this.point = point;
+    this.destination = destination;
+    this.offers = offers;
   }
 
-  get template () {
-    return createEditeFormTemplate(this.#point, this.#destination, this.#offers);
+  getTemplate () {
+    return createEditeFormTemplate(this.point, this.destination, this.offers);
   }
 
-  get element() {
-    if (!this.#element){
-      this.#element = createElement(this.template);
+  getElement() {
+    if (!this.element){
+      this.element = createElement(this.getTemplate());
     }
 
-    return this.#element;
+    return this.element;
   }
 
   removeElement() {
-    this.#element = null;
+    this.element = null;
   }
 }
