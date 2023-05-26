@@ -1,8 +1,8 @@
-import {RenderPosition, createElement} from '../framework/render';
-import {TRIP_TYPES} from '../const';
+import { RenderPosition, createElement } from '../framework/render';
+import { TRIP_TYPES } from '../const';
 import AbstractView from '../framework/view/abstract-view';
 
-
+/* eslint-disable */
 function createEventWithContent() {
   return '<li class="trip-events__item"></li>';
 }
@@ -16,7 +16,9 @@ function createContentHeader(data) {
   <div class="event__type-wrapper">
     <label class="event__type  event__type-btn" for="event-type-toggle-1">
       <span class="visually-hidden">Choose event type</span>
-      <img class="event__type-icon" width="17" height="17" src="img/icons/${data.type}.png" alt="Event type icon">
+      <img class="event__type-icon" width="17" height="17" src="img/icons/${
+        data.type
+      }.png" alt="Event type icon">
     </label>
     <input class="event__type-toggle  visually-hidden" id="event-type-toggle-1" type="checkbox">
 
@@ -25,10 +27,12 @@ function createContentHeader(data) {
         <legend class="visually-hidden">Event type</legend>
 
 
-          ${TRIP_TYPES.map((elem) => `<div class="event__type-item">
+          ${TRIP_TYPES.map(
+            (elem) => `<div class="event__type-item">
           <input id="event-type-${elem.toLocaleLowerCase()}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${elem.toLocaleLowerCase()}">
           <label class="event__type-label  event__type-label--${elem.toLocaleLowerCase()}" for="event-type-${elem.toLocaleLowerCase()}-1">${elem}</label>
-        </div>`).join('')}
+        </div>`
+          ).join('')}
 
       </fieldset>
     </div>
@@ -78,13 +82,18 @@ function createEventSectionOffers(data) {
   return `<section class="event__section  event__section--offers">
 
 
-  ${data.offers.offers.length > 0 ? '<h3 class="event__section-title  event__section-title--offers">Offers</h3>' : ''}
+  ${
+    data.offers.offers.length > 0
+      ? '<h3 class="event__section-title  event__section-title--offers">Offers</h3>'
+      : ''
+  }
 
 
-  ${data.offers.offers &&
-  `<div class="event__available-offers">${data.offers.offers
-    .map(
-      (elem) => `<div class="event__offer-selector">
+  ${
+    data.offers.offers &&
+    `<div class="event__available-offers">${data.offers.offers
+      .map(
+        (elem) => `<div class="event__offer-selector">
   <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1" type="checkbox" name="event-offer-luggage" checked>
   <label class="event__offer-label" for="event-offer-luggage-1">
     <span class="event__offer-title">${elem.title}</span>
@@ -92,8 +101,9 @@ function createEventSectionOffers(data) {
     <span class="event__offer-price">${elem.price}</span>
   </label>
 </div>`
-    )
-    .join('')}</div>`}
+      )
+      .join('')}</div>`
+  }
 
 </section>`;
 }
@@ -105,20 +115,25 @@ function createContentEventSectionDestination(data) {
 
 
 
-  ${data.destination.pictures.length > 0 ? `<div class="event__photos-container"><div class="event__photos-tape">
-      ${data.destination.pictures.map((elem) => `<img class="event__photo" src=${elem.src} alt="Event photo">`)}
-      </div></div>` : ''}
+  ${
+    data.destination.pictures.length > 0
+      ? `<div class="event__photos-container"><div class="event__photos-tape">
+      ${data.destination.pictures.map(
+        (elem) => `<img class="event__photo" src=${elem.src} alt="Event photo">`
+      )}
+      </div></div>`
+      : ''
+  }
 
 
 </section>`;
 }
-
+/* eslint-enable */
 export default class EventWithContent extends AbstractView {
   #data;
   #onClickSubmit;
   #onClickArrow;
-
-  constructor({data, onClickSubmit, onClickArrow}) {
+  constructor({ data, onClickSubmit, onClickArrow }) {
     super();
     this.#data = data;
     this.#onClickSubmit = onClickSubmit;

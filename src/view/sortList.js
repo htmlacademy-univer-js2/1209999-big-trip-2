@@ -1,5 +1,6 @@
 import AbstractView from '../framework/view/abstract-view';
 
+/* eslint-disable */
 function createSortList() {
   return `<form class="trip-events__trip-sort  trip-sort" action="#" method="get">
   <div class="trip-sort__item  trip-sort__item--day">
@@ -29,7 +30,7 @@ function createSortList() {
 </form>`;
 }
 
-export default class ListOfSort extends AbstractView {
+export default class SortList extends AbstractView {
   get template() {
     return createSortList();
   }
