@@ -8,13 +8,13 @@ const POINT_DESCRIPTIONS = [
   'Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.'
 ];
 
-const COUNTRIES = ['Moscow', 'Ekaterinburg', 'Paris'];
+const COUNTRIES = ['Moscow', 'UK', 'USA', 'Poland', 'Germane'];
 
 const IMAGE_REFERENCE = 'http://picsum.photos/248/152?r=';
 
-const TRIP_TYPES = ['taxi', 'bus', 'flight'];
+const TRIP_TYPES = ['taxi', 'car', 'bicycle', 'skateboard'];
 
-const TITLES_OFFER = ['Stay overnight', 'Add lunch', 'Add a place pet'];
+const TITLES_OFFER = ['Add a child safety seat', 'Stay overnight', 'Add lunch'];
 
 const MAX_IMAGE_ID = 1000;
 const MINUTES_GAP = 30;
