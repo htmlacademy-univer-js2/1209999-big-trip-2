@@ -9,15 +9,15 @@ export const generateOffers = (id) => ({
 
 export const offers = [
   {
-    type: 'taxi',
+    type: 'car',
     offers: [generateOffers(1), generateOffers(2), generateOffers(3)]
   },
   {
-    type: 'bus',
+    type: 'bicycle',
     offers: [generateOffers(4), generateOffers(5)]
   },
   {
-    type: 'flight',
+    type: 'skateboard',
     offers: [generateOffers(6), generateOffers(7), generateOffers(8)]
   }
 ];
