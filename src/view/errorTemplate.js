@@ -4,7 +4,7 @@ function createError() {
   return '<p class="trip-events__msg">Click New Event to create your first point</p>';
 }
 
-export default class Error extends AbstractView {
+export default class errorTemplate extends AbstractView {
   get template() {
     return createError();
   }
