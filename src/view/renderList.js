@@ -2,13 +2,17 @@ import EventWithContent from './eventWithContent';
 import EventWithoutContent from './eventWithoutContent';
 import { render, replace } from '../framework/render';
 import AbstractView from '../framework/view/abstract-view';
-import { generatePoints } from '../mock/point';
 
 const ESC = 'Escape';
 
-export default class listRender extends AbstractView {
-  #content = generatePoints(Math.floor(Math.random() * 10));
+export default class RenderList extends AbstractView {
+  #infosContent = null;
   #placeToRender = document.querySelector('.trip-events__list');
+
+  constructor(infosContent) {
+    super();
+    this.#infosContent = infosContent;
+  }
 
   #renderOneElem(elem) {
     const escKeyDownHandler = (evt) => {
@@ -51,8 +55,8 @@ export default class listRender extends AbstractView {
   }
 
   init() {
-    for (let i = 0; i < this.#content.length; i++) {
-      this.#renderOneElem(this.#content[i]);
+    for (let i = 0; i < this.#infosContent.length; i++) {
+      this.#renderOneElem(this.#infosContent[i]);
     }
   }
 }
