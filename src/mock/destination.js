@@ -1,5 +1,5 @@
-import { randomInt } from '../utils';
 import { COUNTRIES, DESCRIPTIONS, IMAGE_REFERENCE } from '../const';
+import { randomInt } from '../utils';
 
 export const createDestination = (id) => ({
   id: id,

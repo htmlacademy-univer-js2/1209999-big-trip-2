@@ -125,7 +125,6 @@ export default class EditPointView extends AbstractView {
   #point = null;
   #destinations = null;
   #offersByType = null;
-
   #saveClick = null;
 
   constructor({point = BLANK_POINT, destinations, offersByType, saveClick}) {
@@ -133,7 +132,6 @@ export default class EditPointView extends AbstractView {
     this.#point = point;
     this.#destinations = destinations;
     this.#offersByType = offersByType;
-
     this.#saveClick = saveClick;
     this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#saveClickHandler);
     this.element.querySelector('.event__save-btn').addEventListener('click', this.#saveClickHandler);

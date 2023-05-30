@@ -9,13 +9,10 @@ const Mode = {
 
 export default class PointPresenter {
   #pointsListContainer = null;
-
   #changeData = null;
   #changeMode = null;
-
   #pointComponent = null;
   #editPointComponent = null;
-
   #point = null;
   #mode = Mode.DEFAULT;
   #destinations = null;
@@ -72,6 +69,11 @@ export default class PointPresenter {
     if (this.#mode !== Mode.DEFAULT) {
       this.#replaceFormToPoint();
     }
+  };
+
+  destroy = () => {
+    remove(this.#pointComponent);
+    remove(this.#editPointComponent);
   };
 
   #onEscKeyDown = (evt) => {

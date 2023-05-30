@@ -1,7 +1,6 @@
-import dayjs from 'dayjs';
-import { randomInt } from '../utils';
 import { TRIP_TYPES, DAYTYPES } from '../const';
-
+import { randomInt } from '../utils';
+import dayjs from 'dayjs';
 
 export const createPoint = (id) => {
   let currentTime = dayjs().add(randomInt(-7, 7), DAYTYPES[randomInt(0, 1)]);
