@@ -9,14 +9,14 @@ const Mode = {
 
 export default class PointPresenter {
   #pointsListContainer = null;
-  #changeData = null;
-  #changeMode = null;
-  #pointComponent = null;
   #editPointComponent = null;
-  #point = null;
   #mode = Mode.DEFAULT;
+  #pointComponent = null;
   #destinations = null;
   #offersByType = null;
+  #changeData = null;
+  #changeMode = null;
+  #point = null;
 
   constructor(container, destinations, offersByType, changeData, changeMode) {
     this.#pointsListContainer = container;
@@ -34,18 +34,18 @@ export default class PointPresenter {
 
     this.#pointComponent = new PointView({
       point: point,
-      destinations: this.#destinations,
       offersByType: this.#offersByType,
+      destinations: this.#destinations,
       editClick: this.#handleEditClick,
-      favoriteClick: this.#handleFavouriteClick,
+      favouriteClick: this.#handleFavouriteClick,
     });
 
     this.#editPointComponent = new EditPointView({
       point: point,
-      destinations: this.#destinations,
       offersByType: this.#offersByType,
-      saveClick: this.#handleSubmitForm,
-      favoriteClick: this.#handleFavouriteClick,
+      destinations: this.#destinations,
+      closeClick: this.#handleCloseForm,
+      saveClick: this.#handleSaveForm,
     });
 
     if (prevPointComponent === null && prevEditPointComponent === null) {
@@ -101,7 +101,11 @@ export default class PointPresenter {
     this.#replacePointToForm();
   };
 
-  #handleSubmitForm = () => {
+  #handleCloseForm = () => {
+    this.#replaceFormToPoint();
+  };
+
+  #handleSaveForm = () => {
     this.#replaceFormToPoint();
   };
 
