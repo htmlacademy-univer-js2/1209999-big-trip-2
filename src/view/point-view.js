@@ -1,6 +1,6 @@
-import dayjs from 'dayjs';
-import {humanizeDateTime, upperCaseFirst} from '../utils';
 import AbstractView from '../framework/view/abstract-view';
+import {humanizeDateTime, upperCaseFirst} from '../utils';
+import dayjs from 'dayjs';
 
 const createOffersTemplate = (offers, type, activeOffersIds) => {
   const offersByType = offers.find((offer) => offer.type === type).offers;
