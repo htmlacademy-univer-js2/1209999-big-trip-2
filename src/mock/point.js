@@ -1,21 +1,21 @@
-import {offers} from './offer';
-import {getRandomArrayElement, getRandomBoolean, getRandomDate, getRandomIntegerInterval} from '../util';
-import {MINUTES_GAP, TRIP_TYPES} from '../const';
-
-let destinationId = 1;
-let pointId = 1;
+import dayjs from 'dayjs';
+import { randomInt } from '../utils';
+import { TRIP_TYPES, DAYTYPES } from '../const';
 
 
-const generatePoints = () => ({
-  basePrice: getRandomIntegerInterval(10, 300),
-  dateFrom: getRandomDate(MINUTES_GAP),
-  dateTo: getRandomDate(MINUTES_GAP),
-  destination: destinationId++,
-  id: pointId++,
-  isFavorite: getRandomBoolean(),
-  offers: offers,
-  type: getRandomArrayElement(TRIP_TYPES)
-});
-
-
-export {generatePoints};
+export const createPoint = (id) => {
+  let currentTime = dayjs().add(randomInt(-7, 7), DAYTYPES[randomInt(0, 1)]);
+  const dateFrom = currentTime;
+  const dateTo = currentTime.add(randomInt(2, 7), DAYTYPES[randomInt(0, 1)]);
+  currentTime = dateTo;
+  return {
+    basePrice: randomInt(50, 500),
+    dateFrom: dateFrom,
+    dateTo: dateTo,
+    destination: randomInt(0, 9),
+    id: id,
+    isFavorite: Boolean(randomInt(0, 1)),
+    offers: Array.from({ length: randomInt(1, 3) }, () => randomInt(0, 4)),
+    type: TRIP_TYPES[randomInt(0, TRIP_TYPES.length - 1)],
+  };
+};

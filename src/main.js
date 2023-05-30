@@ -1,31 +1,15 @@
-import FilterList from './view/filterList';
-import SortList from './view/sortList';
-import TripInfo from './view/tripInfo';
-import EventList from './view/eventList';
 import { render, RenderPosition } from './framework/render';
-import RenderList from './view/renderList';
-import errorTemplate from './view/errorTemplate';
-import { generatePoints } from './mock/point';
+import Trip from './presenter/trip-events-presenter';
+import PointModel from './model/points-model';
+import FiltersView from './view/filters-view';
+import InfoView from './view/info-view';
+import MenuView from './view/menu-view';
 
-const infosContent = generatePoints(Math.floor(Math.random() * 10));
+const pointsModel = new PointModel();
+const tripPresenter = new Trip(document.querySelector('.trip-events'), pointsModel);
 
-const filterContainerElem = document.querySelector('.trip-controls__filters');
-const sortContainerElem = document.querySelector('.trip-events');
-const tripMainContElem = document.querySelector('.trip-main');
+render(new MenuView(), document.querySelector('.trip-controls__navigation'));
+render(new FiltersView(pointsModel.points), document.querySelector('.trip-controls__filters'));
+render(new InfoView(pointsModel.points, pointsModel.destinations), document.querySelector('.trip-main'), RenderPosition.AFTERBEGIN);
 
-if (infosContent.length !== 0) {
-  render(new TripInfo(), tripMainContElem, RenderPosition.AFTERBEGIN);
-  render(new SortList(), sortContainerElem, RenderPosition.AFTERBEGIN);
-
-  //общий список ul
-  render(new EventList(), sortContainerElem, RenderPosition.BEFOREEND);
-  const contentList = new RenderList(infosContent);
-  contentList.init();
-} else {
-  render(new errorTemplate(), sortContainerElem, RenderPosition.BEFOREEND);
-}
-render(
-  new FilterList(infosContent),
-  filterContainerElem,
-  RenderPosition.BEFOREEND
-);
+tripPresenter.init(pointsModel);

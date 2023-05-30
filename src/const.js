@@ -1,4 +1,4 @@
-const POINT_DESCRIPTIONS = [
+const DESCRIPTIONS = [
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   'Cras aliquet varius magna, non porta ligula feugiat eget.',
   'Fusce tristique felis at fermentum pharetra.',
@@ -8,15 +8,45 @@ const POINT_DESCRIPTIONS = [
   'Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.'
 ];
 
-const COUNTRIES = ['Moscow', 'UK', 'USA', 'Poland', 'Germane'];
+const TITLES_OFFER = [
+  'Add a child safety seat',
+  'Stay overnight',
+  'Add lunch',
+  'Rent a polaroid',
+  'Add a place for a pet',
+  'Book a window seat',
+  'Book a place in the recreation area',
+  'Use the translator service',
+  'Upgrade to a business class'
+];
+
+const COUNTRIES = [
+  'Moscow',
+  'Berlin',
+  'London',
+  'Paris',
+  'Rome',
+  'Madrid',
+];
+
+const DAYTYPES = ['d', 'h'];
+
+const TRIP_TYPES = [
+  'taxi',
+  'bus',
+  'train',
+  'drive',
+  'flight',
+  'ship',
+];
 
 const IMAGE_REFERENCE = 'http://picsum.photos/248/152?r=';
 
-const TRIP_TYPES = ['taxi', 'car', 'bicycle', 'skateboard'];
-
-const TITLES_OFFER = ['Add a child safety seat', 'Stay overnight', 'Add lunch'];
-
-const MAX_IMAGE_ID = 1000;
-const MINUTES_GAP = 30;
-
-export {POINT_DESCRIPTIONS, IMAGE_REFERENCE, MAX_IMAGE_ID, COUNTRIES, TRIP_TYPES, MINUTES_GAP, TITLES_OFFER};
+export {
+  DAYTYPES,
+  COUNTRIES,
+  IMAGE_REFERENCE,
+  TITLES_OFFER,
+  DESCRIPTIONS,
+  TRIP_TYPES,
+};
