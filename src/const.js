@@ -1,11 +1,11 @@
 const DESCRIPTIONS = [
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  'Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.',
+  'Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum.',
+  'Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.',
   'Cras aliquet varius magna, non porta ligula feugiat eget.',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   'Fusce tristique felis at fermentum pharetra.',
   'Aliquam id orci ut lectus varius viverra.',
-  'Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.',
-  'Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum.',
-  'Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.'
 ];
 
 const SORTDATE = {
@@ -15,29 +15,32 @@ const SORTDATE = {
 };
 
 const TITLES_OFFER = [
+  'Book a place in the recreation area',
+  'Upgrade to a business class',
+  'Use the translator service',
   'Add a child safety seat',
-  'Stay overnight',
-  'Add lunch',
-  'Rent a polaroid',
   'Add a place for a pet',
   'Book a window seat',
-  'Book a place in the recreation area',
-  'Use the translator service',
-  'Upgrade to a business class'
+  'Rent a polaroid',
+  'Stay overnight',
+  'Add lunch',
 ];
 
 const COUNTRIES = [
-  'Moscow',
-  'Berlin',
-  'London',
-  'Paris',
-  'Rome',
-  'Madrid',
+  'Russia',
+  'Germany',
+  'France',
+  'UK',
+  'Mexico',
+  'USA',
 ];
 
 const TRIP_TYPES = [
   'taxi',
   'bus',
+  'check-in',
+  'restaurant',
+  'sightseeing',
   'train',
   'drive',
   'flight',
