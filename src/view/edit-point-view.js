@@ -133,17 +133,24 @@ export default class EditPointView extends AbstractStatefulView {
   }
 
   _restoreHandlers() {
-    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#closeClickHandler);
-    this.element.querySelector('.event__save-btn').addEventListener('click', this.#saveClickHandler);
-    this.element.querySelector('.event__input--price').addEventListener('input', this.#priceInputHandler);
-    this.element.querySelector('.event__type-group').addEventListener('change', this.#typeChangeHandler);
     this.element.querySelector('.event__input--destination').addEventListener('blur', this.#destinationChangeHandler);
     this.element.querySelector('.event__available-offers').addEventListener('click', this.#offersCheckHandler);
+    this.element.querySelector('.event__input--price').addEventListener('input', this.#priceInputHandler);
+    this.element.querySelector('.event__type-group').addEventListener('change', this.#typeChangeHandler);
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#closeClickHandler);
+    this.element.querySelector('.event__save-btn').addEventListener('click', this.#saveClickHandler);
   }
 
   get template() {
     return createEditPointTemplate(this._state, this.#destinations, this.#offersByType);
   }
+
+  static parsePointToState = (point, offersByType, destinations) => ({
+    ...point,
+    offers: offersByType.find((offer) => offer.type === point.type).offers.map((offer) => ({ ...offer, isChecked: point.offers.includes(offer.id) })),
+    destination: destinations.find((destination) => destination.id === point.destination),
+    isDesinationCorrect: true,
+  });
 
   #destinationChangeHandler = (evt) => {
     const selectedDestination = this.#destinations.find((destination) => destination.name === evt.target.value);
@@ -188,21 +195,14 @@ export default class EditPointView extends AbstractStatefulView {
     }
   };
 
-  #closeClickHandler = (evt) => {
-    evt.preventDefault();
-    this.#closeClick();
-  };
-
   #priceInputHandler = (evt) => {
     this._setState({
       price: evt.target.value,
     });
   };
 
-  static parsePointToState = (point, offersByType, destinations) => ({
-    ...point,
-    offers: offersByType.find((offer) => offer.type === point.type).offers.map((offer) => ({ ...offer, isChecked: point.offers.includes(offer.id) })),
-    destination: destinations.find((destination) => destination.id === point.destination),
-    isDesinationCorrect: true,
-  });
+  #closeClickHandler = (evt) => {
+    evt.preventDefault();
+    this.#closeClick();
+  };
 }
