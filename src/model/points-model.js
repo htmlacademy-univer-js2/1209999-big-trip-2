@@ -1,16 +1,20 @@
-import {createDestination} from '../mock/destination';
 import {createOfferByType} from '../mock/offers-by-type';
+import {createDestination} from '../mock/destination';
 import {createPoint} from '../mock/point';
 
 export default class PointModel {
-  #destinations = null;
   #offersByType = null;
+  #destinations = null;
   #points = null;
 
   constructor() {
-    this.#destinations = [];
     this.#offersByType = [];
+    this.#destinations = [];
     this.#points = [];
+
+    for (let i = 0; i < 4; i++) {
+      this.#points.push(createPoint(i));
+    }
 
     for (let i = 0; i < 10; i++) {
       this.#destinations.push(createDestination(i));
@@ -18,14 +22,6 @@ export default class PointModel {
     for (let i = 0; i < 9; i++) {
       this.#offersByType.push(createOfferByType(i));
     }
-
-    for (let i = 0; i < 4; i++) {
-      this.#points.push(createPoint(i));
-    }
-  }
-
-  get points() {
-    return this.#points;
   }
 
   get destinations() {
@@ -34,5 +30,9 @@ export default class PointModel {
 
   get offersByType() {
     return this.#offersByType;
+  }
+
+  get points() {
+    return this.#points;
   }
 }

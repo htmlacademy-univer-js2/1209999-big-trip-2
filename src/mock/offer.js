@@ -1,5 +1,5 @@
-import { randomInt } from '../utils';
 import { TITLES_OFFER } from '../const';
+import { randomInt } from '../utils';
 
 export const createOffer = (id) => ({
   id: id,

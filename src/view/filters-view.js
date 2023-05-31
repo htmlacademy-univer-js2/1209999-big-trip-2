@@ -1,7 +1,7 @@
-import dayjs from 'dayjs';
 import AbstractView from '../framework/view/abstract-view';
-import {isDateBefore} from '../utils';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import {isDateBefore} from '../utils';
+import dayjs from 'dayjs';
 
 dayjs.extend(relativeTime);
 

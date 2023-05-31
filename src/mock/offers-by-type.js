@@ -1,6 +1,6 @@
-import { randomInt } from '../utils';
 import { createOffer } from './offer';
 import { TRIP_TYPES } from '../const';
+import { randomInt } from '../utils';
 
 const createOffers = () => {
   const offers = [];
