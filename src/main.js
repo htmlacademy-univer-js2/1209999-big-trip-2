@@ -1,32 +1,59 @@
-import FiltersView from './view/filters-view.js';
-import TripEventsPresenter from './presenter/trip-events-presenter.js';
-import MenuView from './view/menu-view.js';
+import PointsApiService from './api-service/points-api-service.js';
+import DestinationsApiService from './api-service/destinations-api-service.js';
+import OffersApiService from './api-service/offers-api-service.js';
+import NewPointButtonPresenter from './presenter/new-point-button-presenter.js';
+import FilterPresenter from './presenter/filter-presenter.js';
+import PagePresenter from './presenter/page-presenter.js';
+import DestinationsModel from './model/destinations-model.js';
+import FiltersModel from './model/filters-model.js';
+import OffersModel from './model/offers-model.js';
 import PointsModel from './model/points-model.js';
-import { getPoints, getDestinations, getOffersType } from './mock/point.js';
-import { render } from './framework/render.js';
-import { createFilter } from './mock/filter.js';
+import MenuView from './view/menu-view.js';
+import {render} from './framework/render.js';
+import {SERVER_URL, AUTHORIZATION} from './const.js';
 
-const headerElement = document.querySelector('.trip-main');
-const mainElement = document.querySelector('.page-main');
+const mainPage = document.querySelector('.page-main');
+const header = document.querySelector('.trip-main');
 
-const initApp = async () => {
-  const points = await getPoints();
-  const offersType = await getOffersType();
-  const destinations = await getDestinations();
+const destinationsModel = new DestinationsModel(new DestinationsApiService(SERVER_URL, AUTHORIZATION));
+const pointsModel = new PointsModel(new PointsApiService(SERVER_URL, AUTHORIZATION));
+const offersModel = new OffersModel(new OffersApiService(SERVER_URL, AUTHORIZATION));
+const filterModel = new FiltersModel();
 
-  const pointsModel = new PointsModel();
-  pointsModel.init(points, offersType, destinations);
+const boardPresenter = new PagePresenter({
+  pointsModel: pointsModel,
+  destinationsModel: destinationsModel,
+  filterModel: filterModel,
+  tripInfoContainer: header.querySelector('.trip-main__trip-info'),
+  tripContainer: mainPage.querySelector('.trip-events'),
+  offersModel: offersModel
+});
+boardPresenter.init();
 
-  const boardPresenter = new TripEventsPresenter(
-    mainElement.querySelector('.trip-events'),
-    pointsModel
-  );
-  boardPresenter.init();
+const newPointButtonPresenter = new NewPointButtonPresenter({
+  offersModel: offersModel,
+  newPointButtonContainer: header,
+  pointsModel: pointsModel,
+  destinationsModel: destinationsModel,
+  boardPresenter: boardPresenter
+});
+newPointButtonPresenter.init();
 
-  const filters = createFilter(pointsModel.points);
+const filterPresenter = new FilterPresenter({
+  offersModel: offersModel,
+  destinationsModel: destinationsModel,
+  filterModel: filterModel,
+  filterContainer: header.querySelector('.trip-controls__filters'),
+  pointsModel: pointsModel,
+});
+filterPresenter.init();
 
-  render(new FiltersView({ filters }), headerElement.querySelector('.trip-controls__filters'));
-  render(new MenuView(), headerElement.querySelector('.trip-controls__navigation'));
-};
+offersModel.init().finally(() => {
+  destinationsModel.init().finally(() => {
+    pointsModel.init().finally(() => {
+      newPointButtonPresenter.renderNewPointButton();
+    });
+  });
+});
 
-initApp();
+render(new MenuView(), header.querySelector('.trip-controls__navigation'));
