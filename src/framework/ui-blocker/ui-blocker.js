@@ -47,19 +47,19 @@ export default class UiBlocker {
   /** Метод для разблокировки интерфейса */
   unblock() {
     this.#endTime = Date.now();
-    const calculateDuration = this.#endTime - this.#startTime;
+    const duration = this.#endTime - this.#startTime;
 
-    if (calculateDuration < this.#lowerLimit) {
+    if (duration < this.#lowerLimit) {
       clearTimeout(this.#timerId);
       return;
     }
 
-    if (calculateDuration >= this.#upperLimit) {
+    if (duration >= this.#upperLimit) {
       this.#removeClass();
       return;
     }
 
-    setTimeout(this.#removeClass, this.#upperLimit - calculateDuration);
+    setTimeout(this.#removeClass, this.#upperLimit - duration);
   }
 
   /** Метод, добавляющий CSS-класс элементу */

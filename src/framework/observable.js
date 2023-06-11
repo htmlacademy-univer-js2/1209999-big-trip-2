@@ -18,7 +18,7 @@ export default class Observable {
    * @param {observerCallback} observer Функция, которую больше не нужно вызывать при наступлении события
    */
   removeObserver(observer) {
-    this.#observers.destroy(observer);
+    this.#observers.delete(observer);
   }
 
   /**
