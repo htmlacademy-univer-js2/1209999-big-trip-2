@@ -1,5 +1,5 @@
 import AbstractView from '../framework/view/abstract-view.js';
-import { FILTER_TYPE } from '../const.js';
+import {FILTER_TYPE} from '../const.js';
 
 const NoPointsTextType = {
   [FILTER_TYPE.EVERYTHING]: 'Click New Event to create your first point',
@@ -7,12 +7,12 @@ const NoPointsTextType = {
   [FILTER_TYPE.FUTURE]: 'There are no future events now',
 };
 
-const createNoPointTemplate = (filterType) => {
-  const noPointTextValue = NoPointsTextType[filterType];
+const emptyPointTemplate = (filterType) => {
+  const emptyPointTextValue = NoPointsTextType[filterType];
 
   return (
     `<p class="trip-events__msg">
-      ${noPointTextValue}
+      ${emptyPointTextValue}
     </p>`);
 };
 
@@ -25,6 +25,6 @@ export default class EmptyPointsListView extends AbstractView {
   }
 
   get template() {
-    return createNoPointTemplate(this.#filterType);
+    return emptyPointTemplate(this.#filterType);
   }
 }

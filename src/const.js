@@ -26,8 +26,8 @@ const BORDERS_TIME = {
 
 const FILTER_TYPE = {
   EVERYTHING: 'everything',
+  PAST: 'past',
   FUTURE: 'future',
-  PAST: 'past'
 };
 
 const USER_ACTION = {
@@ -38,10 +38,10 @@ const USER_ACTION = {
 
 const SORT_TYPE = {
   DAY: 'day',
-  PRICE: 'price',
   EVENT: 'event',
-  OFFER: 'offer',
   TIME: 'time',
+  PRICE: 'price',
+  OFFER: 'offer',
 };
 
 const UPDATE_TYPE = {
@@ -53,10 +53,10 @@ const UPDATE_TYPE = {
 
 const SORT_TYPE_DICTIONARY = {
   [SORT_TYPE.DAY]: 'Day',
-  [SORT_TYPE.PRICE]: 'Price',
   [SORT_TYPE.EVENT]: 'Event',
-  [SORT_TYPE.OFFER]: 'Offer',
   [SORT_TYPE.TIME]: 'Time',
+  [SORT_TYPE.PRICE]: 'Price',
+  [SORT_TYPE.OFFER]: 'Offer',
 };
 
 const SORT_DICT = {
@@ -94,9 +94,9 @@ const POINT_TYPE = {
   DRIVE: 'drive',
   TAXI: 'taxi',
   TRAIN: 'train',
+  FLIGHT: 'flight',
   CHECK_IN: 'check-in',
   RESTAURANT: 'restaurant',
-  FLIGHT: 'flight',
   SIGHTSEEING: 'sightseeing',
 };
 
@@ -106,10 +106,16 @@ const POINT_TYPE_DICTIONARY = {
   [POINT_TYPE.DRIVE]: 'Drive',
   [POINT_TYPE.TAXI]: 'Taxi',
   [POINT_TYPE.TRAIN]: 'Train',
+  [POINT_TYPE.FLIGHT]: 'Flight',
   [POINT_TYPE.CHECK_IN]: 'Check-in',
   [POINT_TYPE.RESTAURANT]: 'Restaurant',
-  [POINT_TYPE.FLIGHT]: 'Flight',
   [POINT_TYPE.SIGHTSEEING]: 'Sightseeing',
+};
+
+const API_URLS = {
+  DESTINATIONS: 'destinations',
+  OFFERS: 'offers',
+  POINTS: 'points',
 };
 
 export {
@@ -117,6 +123,7 @@ export {
   DAY_IN_MINUTES,
   AUTHORIZATION,
   SERVER_URL,
+  API_URLS,
   DATE_FORMAT,
   TIME_FORMAT,
   FILTER_TYPE,

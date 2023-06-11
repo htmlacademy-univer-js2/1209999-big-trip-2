@@ -2,12 +2,12 @@ import { render } from '../framework/render.js';
 import NewPointButtonView from '../view/new-point-button-view.js';
 
 export default class NewPointButtonPresenter {
-  #newPointButtonContainer = null;
+  #newPointButtonComponent = null;
   #destinationsModel = null;
+  #newPointButtonContainer = null;
   #pointsModel = null;
   #offersModel = null;
   #boardPresenter = null;
-  #newPointButtonComponent = null;
 
   constructor({newPointButtonContainer, destinationsModel, pointsModel, offersModel, boardPresenter}) {
     this.#newPointButtonContainer = newPointButtonContainer;
@@ -23,7 +23,9 @@ export default class NewPointButtonPresenter {
 
   renderNewPointButton = () => {
     render(this.#newPointButtonComponent, this.#newPointButtonContainer);
+
     this.#newPointButtonComponent.setClickHandler(this.#handleNewPointButtonClick);
+
     if (this.#offersModel.offers.length === 0 || this.#offersModel.isSuccessfulLoading === false ||
       this.#destinationsModel.destinations.length === 0 || this.#destinationsModel.isSuccessfulLoading === false ||
       this.#pointsModel.isSuccessfulLoading === false) {

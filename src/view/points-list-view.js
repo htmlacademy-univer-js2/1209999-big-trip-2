@@ -6,7 +6,7 @@ const createPointsListTemplate = () => (
 );
 
 export default class PointsListView extends AbstractView {
-  get template () {
+  get template() {
     return createPointsListTemplate();
   }
 }
