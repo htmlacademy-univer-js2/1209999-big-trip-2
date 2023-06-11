@@ -1,8 +1,8 @@
 import AbstractView from '../framework/view/abstract-view.js';
-import {formatDateToDDMMM, calculateDuration, createDate, createTime } from '../utils.js';
 import he from 'he';
+import {formatDateToDDMMM, calculateDuration, createDate, createTime} from '../utils.js';
 
-const renderOffers = (allOffers, checkedOffers) => {
+const offersTemplate = (allOffers, checkedOffers) => {
   if (!allOffers) {
     return '';
   }
@@ -43,7 +43,7 @@ const createPreviewPointTemplate = (point, destinations, allOffers) => {
       </p>
       <h4 class="visually-hidden">Offers:</h4>
       <ul class="event__selected-offers">
-        ${renderOffers(allPointTypeOffers, offers)}
+        ${offersTemplate(allPointTypeOffers, offers)}
       </ul>
       <button class="event__favorite-btn ${isFavorite ? 'event__favorite-btn--active' : ''}" type="button">
       <span class="visually-hidden">Add to favorite</span>
@@ -71,9 +71,15 @@ export default class PreviewPointView extends AbstractView {
     this.#offers = offers;
   }
 
-  get template () {
-    return createPreviewPointTemplate(this.#point, this.#destination, this.#offers);
-  }
+  #editClickHandler = (evt) => {
+    evt.preventDefault();
+    this._callback.editClick();
+  };
+
+  #favoriteClickHandler = (evt) => {
+    evt.preventDefault();
+    this._callback.favoriteClick();
+  };
 
   setEditClickHandler = (callback) => {
     this._callback.editClick = callback;
@@ -85,13 +91,7 @@ export default class PreviewPointView extends AbstractView {
     this.element.querySelector('.event__favorite-btn').addEventListener('click', this.#favoriteClickHandler);
   };
 
-  #editClickHandler = (evt) => {
-    evt.preventDefault();
-    this._callback.editClick();
-  };
-
-  #favoriteClickHandler = (evt) => {
-    evt.preventDefault();
-    this._callback.favoriteClick();
-  };
+  get template() {
+    return createPreviewPointTemplate(this.#point, this.#destination, this.#offers);
+  }
 }
