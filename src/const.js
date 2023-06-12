@@ -9,14 +9,14 @@ import {
 import dayjs from 'dayjs';
 
 
-const FINAL_FORMAT_HEADERS  = {
+const FINAL_FORMAT_HEADERS = {
   DATE_FROM: 'date_from',
   DATE_TO: 'date_to',
   BASE_PRICE: 'base_price',
   IS_FAVORITE: 'is_favorite'
 };
 
-const ERROR_MESSAGE= {
+const ERROR_MESSAGE = {
   UPDATE_NON_EXISTENT_POINT: 'Oops can\'t update non-existent point',
   CANT_UPDATE: 'Oops can\'t update point',
   CANT_ADD: 'Oops can\'t add point',
