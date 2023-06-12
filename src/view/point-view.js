@@ -129,12 +129,12 @@ const createEditingPointTemplate = (point, destinations, allOffers, isNewPoint) 
 };
 
 export default class PointView extends AbstractStatefulView {
-  #destinations = null;
-  #offers = null;
-  #isNewPoint = null;
-  #offersByType = null;
-  #datepickerFrom = null;
-  #datepickerTo = null;
+  #destinations;
+  #offers;
+  #isNewPoint;
+  #offersByType;
+  #datepickerFrom;
+  #datepickerTo;
 
   constructor({point = BLANK_POINT, destinations, offers, isNewPoint}) {
     super();

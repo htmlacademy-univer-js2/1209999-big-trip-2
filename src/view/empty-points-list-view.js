@@ -7,17 +7,8 @@ const NoPointsTextType = {
   [FILTER_TYPE.FUTURE]: 'There are no future events now',
 };
 
-const emptyPointTemplate = (filterType) => {
-  const emptyPointTextValue = NoPointsTextType[filterType];
-
-  return (
-    `<p class="trip-events__msg">
-      ${emptyPointTextValue}
-    </p>`);
-};
-
-export default class EmptyPointsListView extends AbstractView {
-  #filterType = null;
+class EmptyPointsListView extends AbstractView {
+  #filterType;
 
   constructor(filterType) {
     super();
@@ -25,6 +16,14 @@ export default class EmptyPointsListView extends AbstractView {
   }
 
   get template() {
-    return emptyPointTemplate(this.#filterType);
+    const emptyPointTextValue = NoPointsTextType[this.#filterType];
+
+    return `
+      <p class="trip-events__msg">
+        ${emptyPointTextValue}
+      </p>`;
   }
 }
+
+export default EmptyPointsListView;
+

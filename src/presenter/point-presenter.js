@@ -9,16 +9,16 @@ const Mode = {
 };
 
 export default class PointPresenter {
-  #pointListContainer = null;
-  #previewPointComponent = null;
+  #pointListContainer;
+  #previewPointComponent;
   #editPointComponent = null;
-  #destinationsModel = null;
-  #offersModel = null;
-  #destinations = null;
-  #offers = null;
-  #changeData = null;
-  #changeMode = null;
-  #point = null;
+  #destinationsModel;
+  #offersModel;
+  #destinations;
+  #offers;
+  #changeData;
+  #changeMode;
+  #point;
   #mode = Mode.PREVIEW;
 
   constructor({pointListContainer, changeData, changeMode, destinationsModel, offersModel}) {
@@ -69,6 +69,11 @@ export default class PointPresenter {
     remove(prevPreviewPointComponent);
     remove(prevEditPointComponent);
   }
+
+  destroy = () => {
+    remove(this.#previewPointComponent);
+    remove(this.#editPointComponent);
+  };
 
   #replaceEditingPointToPreviewPoint = () => {
     replace(this.#previewPointComponent, this.#editPointComponent);
@@ -132,11 +137,6 @@ export default class PointPresenter {
     });
   };
 
-  destroy = () => {
-    remove(this.#previewPointComponent);
-    remove(this.#editPointComponent);
-  };
-
   resetView = () => {
     if (this.#mode !== Mode.PREVIEW) {
       this.#editPointComponent.reset(this.#point);
@@ -169,4 +169,3 @@ export default class PointPresenter {
     }
   };
 }
-

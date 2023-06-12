@@ -1,5 +1,5 @@
 import Observable from '../framework/observable.js';
-import { FILTER_TYPE } from '../const.js';
+import {FILTER_TYPE} from '../const.js';
 
 export default class FiltersModel extends Observable {
   #filter = FILTER_TYPE.EVERYTHING;
@@ -8,8 +8,8 @@ export default class FiltersModel extends Observable {
     return this.#filter;
   }
 
-  setFilter(updateType, filter) {
+  setFilter(updateFilter, filter) {
     this.#filter = filter;
-    this._notify(updateType, filter);
+    this._notify(updateFilter, filter);
   }
 }

@@ -1,31 +1,30 @@
 import Observable from '../framework/observable.js';
 
-export default class OffersModel extends Observable{
-  #offersApi = null;
-  #isSuccessfulLoading = false;
+export default class OffersModel extends Observable {
+  #offersFromServer;
+  #isLoaded = false;
   #offers = [];
 
-  constructor(offersApi) {
+  constructor(offersFromServer) {
     super();
-    this.#offersApi = offersApi;
+    this.#offersFromServer = offersFromServer;
   }
 
-  init = async () => {
+  async init() {
     try {
-      this.#isSuccessfulLoading = true;
-      this.#offers = await this.#offersApi.offers;
-    } catch(err) {
-      this.#isSuccessfulLoading = false;
+      this.#isLoaded = true;
+      this.#offers = await this.#offersFromServer.offers;
+    } catch (err) {
+      this.#isLoaded = false;
       this.#offers = [];
     }
-  };
+  }
 
   get offers() {
     return this.#offers;
   }
 
-  get isSuccessfulLoading() {
-    return this.#isSuccessfulLoading;
+  get isLoaded() {
+    return this.#isLoaded;
   }
 }
-
