@@ -6,6 +6,28 @@ import {
   sortByDurationDescending,
   sortByPriceDescending
 } from './utils';
+import dayjs from 'dayjs';
+
+
+const FINAL_FORMAT_HEADERS  = {
+  DATE_FROM: 'date_from',
+  DATE_TO: 'date_to',
+  BASE_PRICE: 'base_price',
+  IS_FAVORITE: 'is_favorite'
+};
+
+const ERROR_MESSAGE= {
+  UPDATE_NON_EXISTENT_POINT: 'Oops can\'t update non-existent point',
+  CANT_UPDATE: 'Oops can\'t update point',
+  CANT_ADD: 'Oops can\'t add point',
+  DELETE_NON_EXISTENT_POINT: 'Oops can\'t delete non-existent point',
+  CANT_DELETE: 'Oops can\'t delete point',
+};
+
+const MODE = {
+  PREVIEW: 'preview',
+  EDITING: 'editing',
+};
 
 const SERVER_URL = 'https://18.ecmascript.pages.academy/big-trip';
 
@@ -118,8 +140,26 @@ const API_URLS = {
   POINTS: 'points',
 };
 
+const EMPTY_POINTS_TEXT = {
+  [FILTER_TYPE.EVERYTHING]: 'Click New Event to create your first point',
+  [FILTER_TYPE.PAST]: 'There are no past events now',
+  [FILTER_TYPE.FUTURE]: 'There are no future events now',
+};
+
+const BLANK_POINT = {
+  type: POINT_TYPE.BUS,
+  destination: 1,
+  dateFrom: dayjs(),
+  dateTo: dayjs(),
+  basePrice: 100,
+  offers: [],
+  isFavorite: false,
+};
+
 export {
+  BLANK_POINT,
   HOUR_IN_MINUTES,
+  EMPTY_POINTS_TEXT,
   DAY_IN_MINUTES,
   AUTHORIZATION,
   SERVER_URL,
@@ -132,9 +172,12 @@ export {
   UPDATE_TYPE,
   SORT_TYPE,
   SORT_DICT,
+  MODE,
+  FINAL_FORMAT_HEADERS,
   SORT_TYPE_DICTIONARY,
   POINT_TYPE,
   POINT_TYPE_DICTIONARY,
   BORDERS_TIME,
+  ERROR_MESSAGE,
   RESPONSE_METHOD,
 };

@@ -1,5 +1,5 @@
-import {render, remove} from '../framework/render.js';
 import TripView from '../view/trip-view.js';
+import {render, remove} from '../framework/render.js';
 
 export default class TripPresenter {
   #destinationsContainer;
