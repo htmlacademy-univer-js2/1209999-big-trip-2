@@ -1,5 +1,5 @@
 import Observable from '../framework/observable.js';
-import {UPDATE_TYPE} from '../const.js';
+import {ERROR_MESSAGE, UPDATE_TYPE} from '../const.js';
 
 export default class PointsModel extends Observable {
   #pointsFromServer;
@@ -28,7 +28,7 @@ export default class PointsModel extends Observable {
     const index = this.#getPointIndexById(update.id);
 
     if (index === -1) {
-      throw new Error('Oops can\'t update non-existent point');
+      throw new Error(ERROR_MESSAGE.UPDATE_NON_EXISTENT_POINT);
     }
 
     try {
@@ -37,7 +37,7 @@ export default class PointsModel extends Observable {
       this.#points[index] = updatedPoint;
       this._notify(updateType, updatedPoint);
     } catch (err) {
-      throw new Error('Oops can\'t update point');
+      throw new Error(ERROR_MESSAGE.CANT_UPDATE);
     }
   }
 
@@ -48,7 +48,7 @@ export default class PointsModel extends Observable {
       this.#points.unshift(newPoint);
       this._notify(updateType, newPoint);
     } catch (err) {
-      throw new Error('Oops can\'t add point');
+      throw new Error(ERROR_MESSAGE.CANT_ADD);
     }
   }
 
@@ -56,7 +56,7 @@ export default class PointsModel extends Observable {
     const index = this.#getPointIndexById(update.id);
 
     if (index === -1) {
-      throw new Error('Oops can\'t delete non-existent point');
+      throw new Error(ERROR_MESSAGE.DELETE_NON_EXISTENT_POINT);
     }
 
     try {
@@ -64,7 +64,7 @@ export default class PointsModel extends Observable {
       this.#points.splice(index, 1);
       this._notify(updateType);
     } catch (err) {
-      throw new Error('Oops can\'t delete point');
+      throw new Error(ERROR_MESSAGE.CANT_DELETE);
     }
   }
 

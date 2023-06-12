@@ -1,5 +1,6 @@
 import AbstractView from '../framework/view/abstract-view.js';
 import {formatDateToDDMMM} from '../utils.js';
+import {tripTemplate, tripInfoTemplate, dateTemplate, destinationsTemplate} from '../templates/trip-template.js';
 
 const renderRouteTrip = (points, destinations) => {
   if (points.length === 0) {
@@ -12,7 +13,7 @@ const renderRouteTrip = (points, destinations) => {
   if (uniqueDestinations.length > 3) {
     const startPoint = destinations.find((item) => item.id === uniqueDestinations[0]);
     const endPoint = destinations.find((item) => item.id === uniqueDestinations[uniqueDestinations.length - 1]);
-    return `${startPoint.name} &mdash; ... &mdash; ${endPoint.name}`;
+    return destinationsTemplate(startPoint, endPoint);
   }
 
   const routeNames = uniqueDestinations.map((destination) => destinations.find((item) => item.id === destination).name);
@@ -26,7 +27,7 @@ const renderDatesTrip = (points) => {
 
   const startDate = points[0].dateFrom !== null ? formatDateToDDMMM(points[0].dateFrom) : '';
   const endDate = points[points.length - 1].dateTo !== null ? formatDateToDDMMM(points[points.length - 1].dateTo) : '';
-  return `${startDate}&nbsp;&mdash;&nbsp;${endDate}`;
+  return dateTemplate(startDate, endDate);
 };
 
 const getPricePointOffers = (point, offers) => {
@@ -58,7 +59,7 @@ const renderTotalPriceTrip = (points, offers) => {
     totalPrice += getPricePointOffers(point, offers);
   });
 
-  return `Total: &euro;&nbsp;<span class="trip-info__cost-value">${totalPrice}</span>`;
+  return tripInfoTemplate(totalPrice);
 };
 
 const createTripInfoTemplate = (points, destinations, offers) => {
@@ -70,15 +71,7 @@ const createTripInfoTemplate = (points, destinations, offers) => {
   const dates = renderDatesTrip(points);
   const totalPrice = renderTotalPriceTrip(points, offers);
 
-  return `<div class="trip-info">
-    <div class="trip-info__main">
-      <h1 class="trip-info__title">${route}</h1>
-      <p class="trip-info__dates">${dates}</p>
-    </div>
-    <p class="trip-info__cost">
-      ${totalPrice}
-    </p>
-  </div>`;
+  return tripTemplate(route, dates, totalPrice);
 };
 
 

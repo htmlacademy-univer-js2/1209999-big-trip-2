@@ -1,10 +1,9 @@
 import AbstractView from '../framework/view/abstract-view.js';
+import {pointsListTemplate} from '../templates/points-list-template.js';
 
 class PointsListView extends AbstractView {
   get template() {
-    return `
-      <ul class="trip-events__list">
-      </ul>`;
+    return pointsListTemplate;
   }
 }
 

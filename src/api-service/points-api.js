@@ -1,5 +1,5 @@
 import ApiService from '../framework/api-service.js';
-import {API_URLS, RESPONSE_METHOD} from '../const.js';
+import {FINAL_FORMAT_HEADERS, API_URLS, RESPONSE_METHOD} from '../const.js';
 
 export default class PointsApi extends ApiService {
   get points() {
@@ -41,10 +41,10 @@ export default class PointsApi extends ApiService {
 
     return {
       ...rest,
-      'date_from': dateFrom instanceof Date ? dateFrom.toISOString() : null,
-      'date_to': dateTo instanceof Date ? dateTo.toISOString() : null,
-      'base_price': basePrice,
-      'is_favorite': isFavorite,
+      [FINAL_FORMAT_HEADERS.DATE_FROM]: dateFrom instanceof Date ? dateFrom.toISOString() : null,
+      [FINAL_FORMAT_HEADERS.DATE_TO]: dateTo instanceof Date ? dateTo.toISOString() : null,
+      [FINAL_FORMAT_HEADERS.BASE_PRICE]: basePrice,
+      [FINAL_FORMAT_HEADERS.IS_FAVORITE]: isFavorite,
     };
   }
 }

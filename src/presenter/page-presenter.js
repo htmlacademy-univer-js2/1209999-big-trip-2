@@ -1,4 +1,3 @@
-import {render, RenderPosition, remove} from '../framework/render.js';
 import UiBlocker from '../framework/ui-blocker/ui-blocker.js';
 import PointsListView from '../view/points-list-view.js';
 import SortView from '../view/sort-view.js';
@@ -7,8 +6,9 @@ import LoadingView from '../view/loading-view.js';
 import ErrorView from '../view/error-view.js';
 import PointPresenter from './point-presenter.js';
 import NewPointPresenter from './new-point-presenter.js';
-import {UPDATE_TYPE, USER_ACTION, SORT_TYPE, FILTER_TYPE, BORDERS_TIME, SORT_DICT, FILTER} from '../const.js';
 import TripPresenter from './trip-presenter.js';
+import {UPDATE_TYPE, USER_ACTION, SORT_TYPE, FILTER_TYPE, BORDERS_TIME, SORT_DICT, FILTER} from '../const.js';
+import {render, RenderPosition, remove} from '../framework/render.js';
 
 export default class PagePresenter {
   #pointListComponent = new PointsListView();
