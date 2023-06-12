@@ -1,13 +1,13 @@
-import { render } from '../framework/render.js';
+import {render} from '../framework/render.js';
 import NewPointButtonView from '../view/new-point-button-view.js';
 
 export default class NewPointButtonPresenter {
-  #newPointButtonComponent = null;
-  #destinationsModel = null;
-  #newPointButtonContainer = null;
-  #pointsModel = null;
-  #offersModel = null;
-  #boardPresenter = null;
+  #newPointButtonComponent;
+  #destinationsModel;
+  #newPointButtonContainer;
+  #pointsModel;
+  #offersModel;
+  #boardPresenter;
 
   constructor({newPointButtonContainer, destinationsModel, pointsModel, offersModel, boardPresenter}) {
     this.#newPointButtonContainer = newPointButtonContainer;
@@ -21,25 +21,28 @@ export default class NewPointButtonPresenter {
     this.#newPointButtonComponent = new NewPointButtonView();
   }
 
-  renderNewPointButton = () => {
+  renderNewPointButton() {
     render(this.#newPointButtonComponent, this.#newPointButtonContainer);
 
-    this.#newPointButtonComponent.setClickHandler(this.#handleNewPointButtonClick);
+    this.#newPointButtonComponent.setClickHandler(this.#handleNewPointButtonClick.bind(this));
 
-    if (this.#offersModel.offers.length === 0 || this.#offersModel.isSuccessfulLoading === false ||
-      this.#destinationsModel.destinations.length === 0 || this.#destinationsModel.isSuccessfulLoading === false ||
-      this.#pointsModel.isSuccessfulLoading === false) {
+    if (
+      this.#offersModel.offers.length === 0 ||
+      this.#offersModel.isLoaded === false ||
+      this.#destinationsModel.destinations.length === 0 ||
+      this.#destinationsModel.isLoaded === false ||
+      this.#pointsModel.isLoaded === false
+    ) {
       this.#newPointButtonComponent.element.disabled = true;
     }
-  };
+  }
 
-  #handleNewPointFormClose = () => {
+  #handleNewPointFormClose() {
     this.#newPointButtonComponent.element.disabled = false;
-  };
+  }
 
-  #handleNewPointButtonClick = () => {
-    this.#boardPresenter.createPoint(this.#handleNewPointFormClose);
+  #handleNewPointButtonClick() {
+    this.#boardPresenter.createPoint(this.#handleNewPointFormClose.bind(this));
     this.#newPointButtonComponent.element.disabled = true;
-  };
+  }
 }
-

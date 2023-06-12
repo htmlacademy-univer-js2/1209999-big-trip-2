@@ -1,17 +1,17 @@
-import { render, remove } from '../framework/render.js';
+import {render, remove} from '../framework/render.js';
 import TripView from '../view/trip-view.js';
 
 export default class TripPresenter {
-  #tripInfoContainer = null;
-  #destinationsModel = null;
-  #offersModel = null;
-  #points = null;
-  #destinations = null;
-  #offers = null;
-  #tripInfoComponent = null;
+  #destinationsContainer;
+  #destinationsModel;
+  #offersModel;
+  #points;
+  #destinations;
+  #offers;
+  #destinationsComponent;
 
-  constructor(tripInfoContainer, destinationsModel, offersModel) {
-    this.#tripInfoContainer = tripInfoContainer;
+  constructor(destinationsContainer, destinationsModel, offersModel) {
+    this.#destinationsContainer = destinationsContainer;
     this.#destinationsModel = destinationsModel;
     this.#offersModel = offersModel;
   }
@@ -20,13 +20,13 @@ export default class TripPresenter {
     this.#points = points;
     this.#destinations = [...this.#destinationsModel.destinations];
     this.#offers = [...this.#offersModel.offers];
-    this.#tripInfoComponent = new TripView(this.#points, this.#destinations, this.#offers);
+    this.#destinationsComponent = new TripView(this.#points, this.#destinations, this.#offers);
 
-    render(this.#tripInfoComponent, this.#tripInfoContainer);
+    render(this.#destinationsComponent, this.#destinationsContainer);
   };
 
   destroy = () => {
-    remove(this.#tripInfoComponent);
+    remove(this.#destinationsComponent);
   };
 }
 

@@ -60,9 +60,9 @@ const createPreviewPointTemplate = (point, destinations, allOffers) => {
 };
 
 export default class PreviewPointView extends AbstractView {
-  #point = null;
-  #destination = null;
-  #offers = null;
+  #point;
+  #destination;
+  #offers;
 
   constructor(point, destination, offers) {
     super();
