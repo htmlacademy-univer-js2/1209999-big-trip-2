@@ -65,9 +65,38 @@ export default class PointPresenter {
     remove(prevEditPointComponent);
   }
 
-  destroy = () => {
-    remove(this.#previewPointComponent);
-    remove(this.#editPointComponent);
+  resetView = () => {
+    if (this.#mode !== MODE.PREVIEW) {
+      this.#editPointComponent.reset(this.#point);
+      this.#replaceEditingPointToPreviewPoint();
+    }
+  };
+
+  setDeleting = () => {
+    if (this.#mode === MODE.EDITING) {
+      this.#editPointComponent.updateElement({
+        isDisabled: true,
+        isDeleting: true,
+      });
+    }
+  };
+
+  setSaving = () => {
+    if (this.#mode === MODE.EDITING) {
+      this.#editPointComponent.updateElement({
+        isDisabled: true,
+        isSaving: true,
+      });
+    }
+  };
+
+  setAborting = () => {
+    if (this.#mode === MODE.PREVIEW) {
+      this.#previewPointComponent.shake();
+      return;
+    }
+
+    this.#editPointComponent.shake(this.#resetFormState);
   };
 
   #replaceEditingPointToPreviewPoint = () => {
@@ -115,12 +144,10 @@ export default class PointPresenter {
     this.resetView();
   };
 
-  setDeleting = () => {
-    if (this.#mode === MODE.EDITING) {
-      this.#editPointComponent.updateElement({
-        isDisabled: true,
-        isDeleting: true,
-      });
+  #escKeyDownHandler = (evt) => {
+    if (evt.key === 'Escape' || evt.key === 'Esc') {
+      evt.preventDefault();
+      this.resetView();
     }
   };
 
@@ -132,35 +159,8 @@ export default class PointPresenter {
     });
   };
 
-  resetView = () => {
-    if (this.#mode !== MODE.PREVIEW) {
-      this.#editPointComponent.reset(this.#point);
-      this.#replaceEditingPointToPreviewPoint();
-    }
-  };
-
-  setSaving = () => {
-    if (this.#mode === MODE.EDITING) {
-      this.#editPointComponent.updateElement({
-        isDisabled: true,
-        isSaving: true,
-      });
-    }
-  };
-
-  setAborting = () => {
-    if (this.#mode === MODE.PREVIEW) {
-      this.#previewPointComponent.shake();
-      return;
-    }
-
-    this.#editPointComponent.shake(this.#resetFormState);
-  };
-
-  #escKeyDownHandler = (evt) => {
-    if (evt.key === 'Escape' || evt.key === 'Esc') {
-      evt.preventDefault();
-      this.resetView();
-    }
+  destroy = () => {
+    remove(this.#previewPointComponent);
+    remove(this.#editPointComponent);
   };
 }

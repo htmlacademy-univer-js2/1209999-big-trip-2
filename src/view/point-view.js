@@ -66,6 +66,9 @@ export default class PointView extends AbstractStatefulView {
   #pointDestinationChangeHandler = (evt) => {
     evt.preventDefault();
     const destination = this.#destinations.find((dest) => dest.name === evt.target.value);
+    if (!destination) {
+      return;
+    }
     this.updateElement({
       destination: destination.id,
     });
