@@ -43,17 +43,15 @@ export default class NewPointPresenter {
     document.addEventListener('keydown', this.#escKeyDownHandler.bind(this));
   }
 
-  destroy() {
-    if (this.#createPointComponent === null) {
-      return;
-    }
+  setAborting() {
+    this.#createPointComponent.shake(this.#resetFormState.bind(this));
+  }
 
-    this.#destroyCallback?.();
-
-    remove(this.#createPointComponent);
-    this.#createPointComponent = null;
-
-    document.removeEventListener('keydown', this.#escKeyDownHandler.bind(this));
+  setSaving() {
+    this.#createPointComponent.updateElement({
+      isDisabled: true,
+      isSaving: true,
+    });
   }
 
   #resetFormState() {
@@ -79,14 +77,16 @@ export default class NewPointPresenter {
     this.destroy();
   }
 
-  setAborting() {
-    this.#createPointComponent.shake(this.#resetFormState.bind(this));
-  }
+  destroy() {
+    if (this.#createPointComponent === null) {
+      return;
+    }
 
-  setSaving() {
-    this.#createPointComponent.updateElement({
-      isDisabled: true,
-      isSaving: true,
-    });
+    this.#destroyCallback?.();
+
+    remove(this.#createPointComponent);
+    this.#createPointComponent = null;
+
+    document.removeEventListener('keydown', this.#escKeyDownHandler.bind(this));
   }
 }

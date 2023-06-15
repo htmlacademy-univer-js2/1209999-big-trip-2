@@ -6,13 +6,6 @@ import {
   TIME_FORMAT,
 } from './const';
 
-const getRandomInt = (a = 0, b = 1) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
-
-  return Math.floor(lower + Math.random() * (upper - lower + 1));
-};
-
 const sortByPriceDescending = (pointA, pointB) => pointB.basePrice - pointA.basePrice;
 
 const sortByDateAscending = (pointA, pointB) => dayjs(pointA.dateFrom).diff(dayjs(pointB.dateFrom));
@@ -84,5 +77,4 @@ export {
   isDateInPast,
   isDateInFuture,
   isDateInRange,
-  getRandomInt,
 };
